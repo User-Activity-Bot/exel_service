@@ -22,7 +22,7 @@ api_id = os.getenv("API_ID")
 api_hash = os.getenv("API_HASH")
 
 def is_midnight() -> bool:
-    now = datetime.now()
+    now = datetime.datetime.now()
     return now.hour == 0 and now.minute == 0
 
 # Функция-обертка для запуска асинхронных задач в синхронном режиме
