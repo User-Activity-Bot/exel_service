@@ -6,7 +6,7 @@ import psycopg2.extras
 
 from dotenv import load_dotenv, find_dotenv
 
-from utils import get_user_status, gen_exel
+from utils import get_user_status, gen_exel, is_midnight
 from sending_alerts import send_document_via_telegram
 
 load_dotenv(find_dotenv())
@@ -70,5 +70,7 @@ def main():
             cur.close()
         if 'conn' in locals():
             conn.close()
-            
-main()
+
+while True:
+    if is_midnight():
+        main()
