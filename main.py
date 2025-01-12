@@ -75,4 +75,4 @@ main()
 
 while True:
     if is_midnight():
-        pass
+        main()
