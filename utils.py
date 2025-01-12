@@ -65,12 +65,15 @@ def gen_exel(username : str = None):
     if not username:
         raise "Username is required"
     
-    creation_date_start = datetime.datetime.now().replace(hour=4, minute=0, second=0, microsecond=0)
+    creation_date_start = datetime.datetime.now().replace(hour=0, minute=0, second=0, microsecond=0)
+
+    creation_date_start = creation_date_start - datetime.timedelta(days=1)
 
     # Получение данных
     data = ZMQClient().get_document(username=username, creation_date_start=creation_date_start).get('documents')
 
     # Очистка данных - удаляем повторяющиеся статусы
+    print(data)
     cleaned_data = [data[0]]  # Первую запись оставляем всегда
     for i in range(1, len(data)):
         if data[i]["status"] != data[i - 1]["status"]:
