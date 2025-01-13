@@ -71,8 +71,7 @@ def main():
         if 'conn' in locals():
             conn.close()
 
-main()
-
 while True:
     if is_midnight():
         main()
+        time.sleep(60)
